@@ -1,3 +1,4 @@
 import * as m from 'mithril';
+import { StandingsTable } from './standings';
 
-m.render(document.body, 'Dragon Ball Super - Tournament of Power Rankings');
+m.mount(document.body, StandingsTable);
