@@ -1,13 +1,6 @@
 import * as m from 'mithril';
 import { roster, eliminations } from './data';
-
-function universeOf(w) {
-  for (var u in roster) {
-    if (roster[u].warriors.indexOf(w) !== -1) {
-      return u;
-    }
-  }
-}
+import { universeOf } from './utils';
 
 export var Standings = {
   data: {},
