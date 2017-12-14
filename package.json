@@ -1,0 +1,12 @@
+{
+  "name": "db-top-rank",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "webpack src/index.js build/app.js -d --watch",
+    "build": "webpack src/index.js build/app.js -p"
+  },
+  "dependencies": {
+    "mithril": "^1.1.6",
+    "webpack": "^3.10.0"
+  }
+}
