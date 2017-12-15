@@ -2,33 +2,35 @@ import * as m from 'mithril';
 import { roster, eliminations } from './data';
 import { universeOf } from './utils';
 
-export var Standings = {
-  data: {},
-  load: function() {
-    for (var u in roster) {
-      var universe = roster[u];
-      Standings.data[u] = { remainingWarriors: 10, warriors: {} };
+function standings() {
+  var result = {};
 
-      for (var i = 0; i < universe.warriors.length; i++) {
-        var w = universe.warriors[i];
-        Standings.data[u].warriors[w] = { isEliminated: false };
-      }
-    }
+  for (var u in roster) {
+    var universe = roster[u];
+    result[u] = { remainingWarriors: 10, warriors: {} };
 
-    for (var i = 0; i < eliminations.length; i++) {
-      var w = eliminations[i].warrior;
-      var u = universeOf(w);
-      Standings.data[u].warriors[w].isEliminated = true;
-      Standings.data[u].remainingWarriors--;
+    for (var i = 0; i < universe.warriors.length; i++) {
+      var w = universe.warriors[i];
+      result[u].warriors[w] = { isEliminated: false };
     }
-  },
-};
+  }
+
+  for (var i = 0; i < eliminations.length; i++) {
+    var w = eliminations[i].warrior;
+    var u = universeOf(w);
+    result[u].warriors[w].isEliminated = true;
+    result[u].remainingWarriors--;
+  }
+
+  return result;
+}
 
 export var StandingsTable = {
-  oninit: Standings.load,
   view: function() {
-    return m('table', m('tbody', Object.keys(Standings.data).map(function(u) {
-      var uData = Standings.data[u];
+    var topStandings = standings();
+
+    return m('table', m('tbody', Object.keys(topStandings).map(function(u) {
+      var uData = topStandings[u];
 
       return m('tr', [
         m('th', [

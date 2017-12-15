@@ -2,34 +2,36 @@ import * as m from 'mithril';
 import { roster, eliminations } from './data';
 import { universeOf, universeName } from './utils';
 
-export var UniverseRankings = {
-  data: {},
-  load: function() {
-    for (var u in roster) {
-      var universe = roster[u];
-      UniverseRankings.data[u] = { numRemaining: 10, numWins: 0, lastElimination: null };
+function universeRankings() {
+  var result = {};
+
+  for (var u in roster) {
+    var universe = roster[u];
+    result[u] = { numRemaining: 10, numWins: 0, lastElimination: null };
+  }
+
+  for (var i = 0; i < eliminations.length; i++) {
+    var elimination = eliminations[i];
+    var w = elimination.warrior;
+    var u = universeOf(w);
+
+    result[u].numRemaining--;
+    result[u].lastElimination = elimination.episode;
+
+    for (var j = 0; j < elimination.by.length; j++) {
+      var points = 1 / elimination.by.length;
+      var v = universeOf(elimination.by[j]);
+      result[v].numWins += points;
     }
+  }
 
-    for (var i = 0; i < eliminations.length; i++) {
-      var elimination = eliminations[i];
-      var w = elimination.warrior;
-      var u = universeOf(w);
-
-      UniverseRankings.data[u].numRemaining--;
-      UniverseRankings.data[u].lastElimination = elimination.episode;
-
-      for (var j = 0; j < elimination.by.length; j++) {
-        var points = 1 / elimination.by.length;
-        var v = universeOf(elimination.by[j]);
-        UniverseRankings.data[v].numWins += points;
-      }
-    }
-  },
-};
+  return result;
+}
 
 export var UniverseRankingsTable = {
-  oninit: UniverseRankings.load,
   view: function() {
+    var uRankings = universeRankings();
+
     return m('table', [
       m('thead', [m('tr', [
         m('th.num-col', '#'),
@@ -38,8 +40,8 @@ export var UniverseRankingsTable = {
         m('th', 'Wins'),
         m('th', 'Eliminated'),
       ])]),
-      m('tbody', Object.keys(UniverseRankings.data).map(function(u, i) {
-        var uData = UniverseRankings.data[u];
+      m('tbody', Object.keys(uRankings).map(function(u, i) {
+        var uData = uRankings[u];
         return m('tr', [
           m('td.num-col', i+1),
           m('td', universeName(u)),
