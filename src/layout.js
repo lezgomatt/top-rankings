@@ -5,8 +5,7 @@ export var Layout = {
     return m('.app', [
         m('.header', m('.outer-wrapper', m('.inner-wrapper', [
           m('.title', [
-            m('span.big-title', 'Dragon Ball Super'),
-            ' ',
+            m('span.big-title', 'DRAGON BALL SUPER: '),
             m('span.small-title', 'Tournament of Power Rankings'),
           ])
         ]))),
@@ -19,9 +18,9 @@ export var Layout = {
               '/',
               m('a', {href: '/warrior-rankings', oncreate: m.route.link }, 'Warrior Rankings'),
             ]),
-            vnode.children[0],
+            vnode.attrs.mainView,
           ]),
-          m('.side-view', ''),
+          m('.side-view', vnode.attrs.sideView),
         ]))),
     ])
   }
