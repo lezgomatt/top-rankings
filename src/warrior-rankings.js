@@ -31,13 +31,22 @@ export var WarriorRankings = {
 export var WarriorRankingsTable = {
   oninit: WarriorRankings.load,
   view: function() {
-    return m('div', Object.keys(WarriorRankings.data).map(function(w) {
-      return m('div', [
-        m('span', w),
-        m('span', WarriorRankings.data[w].numWins),
-        m('span', WarriorRankings.data[w].eliminatedOn != null ? WarriorRankings.data[w].eliminatedOn : '--'),
-        m('span', WarriorRankings.data[w].eliminatedBy != null ? WarriorRankings.data[w].eliminatedBy.join(' & ') : '--'),
-      ]);
-    }));
+    return m('table', [
+      m('thead', [m('tr', [
+        m('th.num-col', '#'),
+        m('th', 'Warrior'),
+        m('th', 'Wins'),
+        m('th', 'Eliminated'),
+      ])]),
+      m('tbody', Object.keys(WarriorRankings.data).map(function(w, i) {
+        var wData = WarriorRankings.data[w];
+        return m('tr', [
+          m('td.num-col', i+1),
+          m('td', w),
+          m('td', wData.numWins),
+          m('td', wData.eliminatedOn == null ? 'No' : 'Episode ' + wData.eliminatedOn + ' by ' + wData.eliminatedBy.join(' & ')),
+        ]);
+      })),
+    ]);
   },
 };

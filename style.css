@@ -30,7 +30,7 @@ a:hover {
 
 .inner-wrapper {
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 1440px;
 }
 
 .header {
@@ -60,8 +60,12 @@ table {
   width: 100%;
 }
 
+thead tr {
+  border-bottom: 2px solid rgb(240, 130, 40);
+}
+
 tbody tr {
-  border-top: 1px solid rgb(160, 160, 160);  
+  border-top: 1px solid rgb(180, 180, 160);  
 }
 
 tbody tr:hover {
@@ -73,6 +77,10 @@ th, td {
   text-align: center;
   min-width: 50px;
   max-width: 80px;
+}
+
+.num-col {
+  width: 20px;
 }
 
 .eliminated {

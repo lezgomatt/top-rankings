@@ -1,6 +1,6 @@
 import * as m from 'mithril';
 import { roster, eliminations } from './data';
-import { universeOf } from './utils';
+import { universeOf, universeName } from './utils';
 
 export var UniverseRankings = {
   data: {},
@@ -30,13 +30,24 @@ export var UniverseRankings = {
 export var UniverseRankingsTable = {
   oninit: UniverseRankings.load,
   view: function() {
-    return m('div', Object.keys(UniverseRankings.data).map(function(u) {
-      return m('div', [
-        m('span', u),
-        m('span', UniverseRankings.data[u].numRemaining + '/10'),
-        m('span', UniverseRankings.data[u].numWins),
-        m('span', UniverseRankings.data[u].numRemaining <= 0 ? UniverseRankings.data[u].lastElimination: '--'),
-      ]);
-    }));
+    return m('table', [
+      m('thead', [m('tr', [
+        m('th.num-col', '#'),
+        m('th', 'Universe'),
+        m('th', 'Warriors Remaining'),
+        m('th', 'Wins'),
+        m('th', 'Eliminated'),
+      ])]),
+      m('tbody', Object.keys(UniverseRankings.data).map(function(u, i) {
+        var uData = UniverseRankings.data[u];
+        return m('tr', [
+          m('td.num-col', i+1),
+          m('td', universeName(u)),
+          m('td', uData.numRemaining + '/10'),
+          m('td', uData.numWins),
+          m('td', uData.numRemaining > 0 ? 'No' : 'Episode ' + uData.lastElimination),  
+        ]);
+      })),
+    ]);
   },
 };

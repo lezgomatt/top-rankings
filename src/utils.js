@@ -13,3 +13,7 @@ export function universeOf(w) {
     }
   }
 }
+
+export function universeName(w) {
+  return 'Universe ' + w.substring(1);
+}
