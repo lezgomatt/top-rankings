@@ -93,7 +93,8 @@ th, td {
 }
 
 .main-view {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
+  overflow-y: auto;
 }
 
 .side-view {
@@ -101,10 +102,20 @@ th, td {
   min-width: 320px;
   max-width: 480px;
   padding: 20px;
+  border-left: 2px solid rgb(240, 130, 40);
 }
 
 .hint {
   width: 240px;
-  margin-left: auto;
   font-size: 20px;
+}
+
+@media (max-width: 960px) {
+  .main-focus .side-view {
+    display: none;
+  }
+  
+  .side-focus .main-view {
+    display: none;
+  }  
 }

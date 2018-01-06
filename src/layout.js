@@ -1,8 +1,9 @@
 import * as m from 'mithril';
+import { AppState } from './app';
 
 export var Layout = {
   view: function(vnode) {
-    return m('.app', [
+    return m('.app' + ' .' + AppState.focus + '-focus', [
         m('.header', m('.outer-wrapper', m('.inner-wrapper', [
           m('.title', [
             m('span.big-title', 'DRAGON BALL SUPER: '),

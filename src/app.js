@@ -10,6 +10,7 @@ export var AppState = {
   sideView: 'hint',
   universe: null,
   warrior: null,
+  focus: 'main',
 };
 
 var mainViewComponent = {

@@ -9,6 +9,7 @@ m.route(document.body, '/standings', {
   '/standings': {
     render: function () {
       AppState.mainView = 'standings';
+      AppState.focus = 'main';
 
       return m(App);
     }
@@ -16,6 +17,7 @@ m.route(document.body, '/standings', {
   '/universe-rankings': {
     render: function () {
       AppState.mainView = 'u-rankings';
+      AppState.focus = 'main';
 
       return m(App);
     }
@@ -23,6 +25,7 @@ m.route(document.body, '/standings', {
   '/warrior-rankings': {
     render: function () {
       AppState.mainView = 'w-rankings';
+      AppState.focus = 'main';
 
       return m(App);
     }
