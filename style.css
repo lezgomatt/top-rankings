@@ -1,0 +1,125 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  background: rgb(240, 240, 220);
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  color: rgb(65, 40, 20);
+}
+
+a {
+  padding: 2px 4px;
+  color: rgb(0, 80, 130);
+  text-decoration: none;
+}
+
+a:hover {
+  background: rgb(0, 80, 130);
+  color: white;
+}
+
+.outer-wrapper {
+  margin: 0 20px;
+}
+
+.inner-wrapper {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.header {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background: rgb(240, 130, 40);
+  font-size: 24px;
+  font-style: italic;
+  color: white;
+}
+
+.big-title {
+  font-weight: bold;
+}
+
+.content {
+  margin: 20px 0;
+}
+
+.nav {
+  margin: 10px 0;
+}
+
+table {
+  margin: 20px 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr {
+  border-bottom: 2px solid rgb(240, 130, 40);
+}
+
+tbody tr {
+  border-top: 1px solid rgb(180, 180, 160);  
+}
+
+tbody tr:hover {
+  background: rgb(230, 220, 190);
+}
+
+th, td {
+  padding: 10px 5px;
+  text-align: center;
+  min-width: 50px;
+  max-width: 80px;
+}
+
+.num-col {
+  width: 20px;
+}
+
+.eliminated {
+  text-decoration: line-through;
+  color: rgb(120, 140, 160);
+}
+
+.content .inner-wrapper {
+  display: flex;
+}
+
+.main-view {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.side-view {
+  flex: 1 0 auto;
+  min-width: 320px;
+  max-width: 480px;
+  padding: 20px;
+  border-left: 2px solid rgb(240, 130, 40);
+}
+
+.hint {
+  width: 240px;
+  font-size: 20px;
+}
+
+@media (max-width: 960px) {
+  .main-focus .side-view {
+    display: none;
+  }
+  
+  .side-focus .main-view {
+    display: none;
+  }  
+}
+
+.side-view {
+  display: none;
+}
