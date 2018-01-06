@@ -119,3 +119,7 @@ th, td {
     display: none;
   }  
 }
+
+.side-view {
+  display: none;
+}
