@@ -32,6 +32,20 @@ function warriorRankings() {
 export var WarriorRankingsTable = {
   view: function() {
     var wRankings = warriorRankings();
+    var rows = Object.keys(wRankings)
+      .map(function(w) { return [w, wRankings[w]]; })
+      .sort(function(a, b) {
+        if (a[1].eliminatedOn == null && b[1].eliminatedOn != null) return -1;
+        if (a[1].eliminatedOn != null && b[1].eliminatedOn == null) return 1;
+
+        var eo = b[1].eliminatedOn - a[1].eliminatedOn;
+        if (eo != 0) return eo;
+
+        var nw = b[1].numWins - a[1].numWins;
+        if (nw !== 0) return nw;
+
+        return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0;
+      });
 
     return m('table', [
       m('thead', [m('tr', [
@@ -40,12 +54,13 @@ export var WarriorRankingsTable = {
         m('th', 'Wins'),
         m('th', 'Eliminated'),
       ])]),
-      m('tbody', Object.keys(wRankings).map(function(w, i) {
+      m('tbody', rows.map(function(r, i) {
+        var w = r[0];
         var wData = wRankings[w];
         return m('tr', [
           m('td.num-col', i+1),
           m('td', w),
-          m('td', wData.numWins),
+          m('td', Math.round(wData.numWins * 100)/100),
           m('td', wData.eliminatedOn == null ? 'No' : 'Episode ' + wData.eliminatedOn + ' by ' + wData.eliminatedBy.join(' & ')),
         ]);
       })),
