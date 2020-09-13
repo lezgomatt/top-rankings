@@ -1,12 +1,15 @@
 {
-  "name": "db-top-rank",
+  "name": "dragon-ball-top-rankings",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack src/index.js build/app.js -d --watch",
-    "build": "webpack src/index.js build/app.js -p"
+    "start": "webpack src/index.js --output build/app.js --mode=development --watch",
+    "build": "webpack src/index.js --output build/app.js --mode=production"
   },
   "dependencies": {
-    "mithril": "^1.1.6",
-    "webpack": "^3.10.0"
+    "mithril": "^1.1.6"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   }
 }
