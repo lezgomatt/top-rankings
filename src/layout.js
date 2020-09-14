@@ -13,11 +13,11 @@ export var Layout = {
         m('.content', m('.outer-wrapper', m('.inner-wrapper', [
             m('.main-view', [
             m('.nav', [
-              m('a', {href: '/standings', oncreate: m.route.link }, 'Standings'),
+              m(m.route.Link, {href: '/standings' }, 'Standings'),
               '/',
-              m('a', {href: '/universe-rankings', oncreate: m.route.link }, 'Universe Rankings'),
+              m(m.route.Link, {href: '/universe-rankings' }, 'Universe Rankings'),
               '/',
-              m('a', {href: '/warrior-rankings', oncreate: m.route.link }, 'Warrior Rankings'),
+              m(m.route.Link, {href: '/warrior-rankings' }, 'Warrior Rankings'),
             ]),
             vnode.attrs.mainView,
           ]),
