@@ -2,14 +2,14 @@
   "name": "dragon-ball-top-rankings",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack src/index.js --output build/app.js --mode=development --watch",
-    "build": "webpack src/index.js --output build/app.js --mode=production"
+    "start": "webpack ./src/index.js --output-path ./build --output-filename app.js --mode=development --watch",
+    "build": "webpack ./src/index.js --output-path ./build --output-filename app.js --mode=production"
   },
   "dependencies": {
     "mithril": "^2.0.4"
   },
   "devDependencies": {
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0"
   }
 }
